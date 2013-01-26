@@ -9,4 +9,13 @@ class Poll < ActiveRecord::Base
 
   end
 
+
+
 end
+
+# SELECT polls.text
+# FROM polls
+#   JOIN responses
+#   ON polls.id = responses.poll_id
+#   GROUP BY polls.text
+#   ORDER BY COUNT(responses.poll_id) DESC;
