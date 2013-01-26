@@ -42,7 +42,7 @@ def take_poll(user)
   puts Response.create(
       user_id: user.id,
       poll_id: poll_id,
-      allowed_responses_id: response_id
+      allowed_response_id: response_id
     )
   puts
   puts "THANKS FOR TAKING OUR POLL!!!"
@@ -58,7 +58,7 @@ def view_users_polls
 end
 
 def view_most_popular_polls
-  
+
 end
 
 puts "What is your username?"

@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :responses
+  validates :name, :presence => true
 
   # def self.create_user(name)
   #   user = User.new
@@ -15,9 +16,7 @@ class User < ActiveRecord::Base
     user_responses = user.responses.includes(:poll, :allowed_response)
 
     user_responses.each do |user_response|
-      puts "#{user_response.inspect} DUDE!"
-      puts "#{user_response.poll.inspect} POLL"
-      puts "#{user_response.allowed_response.inspect}"
+      puts "#{user_response.poll.text} | #{user_response.allowed_response.response}"
 
     end
     # sql = "
@@ -37,7 +36,7 @@ class User < ActiveRecord::Base
     # thing.each_with_index do |response, i|
     #   puts "#{i+1} | #{response['name']} answered #{response['response'].downcase} to the question #{response['text'].downcase}"
     # end
-    # nil
+    puts
   end
 
 end
