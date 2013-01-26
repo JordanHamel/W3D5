@@ -1,5 +1,4 @@
 
-
 def prompt
   print " > "
   gets.chomp
@@ -12,6 +11,7 @@ def create_poll
 
   puts "What's your question?"
   poll.text = prompt
+  # I think ned suggested saving with a bang so that it won't silently fail
   poll.save
 
   puts "How many answers to your question?"
