@@ -39,7 +39,7 @@ def take_poll(user)
   puts
   puts "Select your answer!"
   response_id = prompt.to_i
-  puts Response.create(
+  puts Response.create!(
       user_id: user.id,
       poll_id: poll_id,
       allowed_response_id: response_id
