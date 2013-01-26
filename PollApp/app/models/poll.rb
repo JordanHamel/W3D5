@@ -6,7 +6,7 @@ class Poll < ActiveRecord::Base
 
   # returns the top 10 most responded to questions
   def self.most_popular
-
+    
   end
 
 

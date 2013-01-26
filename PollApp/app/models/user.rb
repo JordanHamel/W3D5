@@ -12,22 +12,32 @@ class User < ActiveRecord::Base
 
   def self.print_responses(user)
     #a heredoc!
-    sql = (<<-SQL)
-    SELECT polls.text, allowed_responses.response, users.name
-    FROM users
-    JOIN responses
-      ON users.id = responses.user_id
-    JOIN polls
-      ON responses.poll_id = polls.id
-    JOIN allowed_responses
-      ON allowed_responses.id = responses.allowed_responses_id
-      SQL
+    user_responses = user.responses.includes(:poll, :allowed_response)
 
-    thing = ActiveRecord::Base.connection.execute(sql)
-    thing.each_with_index do |response, i|
-      puts "#{i+1} | #{response['name']} answered #{response['response'].downcase} to the question #{response['text'].downcase}"
+    user_responses.each do |user_response|
+      puts "#{user_response.inspect} DUDE!"
+      puts "#{user_response.poll.inspect} POLL"
+      puts "#{user_response.allowed_response.inspect}"
+
     end
-    nil
+    # sql = "
+    # SELECT polls.text, allowed_responses.response, users.name
+    # FROM users
+    # JOIN responses
+    #   ON users.id = responses.user_id
+    # JOIN polls
+    #   ON responses.poll_id = polls.id
+    # JOIN allowed_responses
+    #   ON allowed_responses.id = responses.allowed_responses_id
+    # WHERE responses.user_id = #{user.id}
+    #   "
+
+    # thing = ActiveRecord::Base.connection.execute(sql, user.id)
+    # puts "THING IS : #{thing.inspect}"
+    # thing.each_with_index do |response, i|
+    #   puts "#{i+1} | #{response['name']} answered #{response['response'].downcase} to the question #{response['text'].downcase}"
+    # end
+    # nil
   end
 
 end

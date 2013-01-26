@@ -49,6 +49,18 @@ def take_poll(user)
 
 end
 
+def view_users_polls
+  puts "Enter username to view that user's polls:"
+  username = prompt
+  user = User.find_by_name(username)
+  User.print_responses(user)
+  puts
+end
+
+def view_most_popular_polls
+  
+end
+
 puts "What is your username?"
 username = prompt
 
